@@ -19,6 +19,6 @@ Route::get('/', function () {
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 });
-Route::get('/admin/admin', function () {
+Route::get('/admin/admin/list', function () {
     return view('admin.admin.list');
 });
