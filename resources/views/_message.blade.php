@@ -1,15 +1,11 @@
-<div class="clear-both"></div>
-
-@if (!empty(session('success')))
-<div class="alert alert-success alert-dismissible fade in" role="alert">
-    {{ session('success') }}
+@if (!empty(Session::has('success')))
+<div class="alert alert-success" role="alert">
+    {{ Session::get('success') }}
 </div>
-    
 @endif
 
-@if (!empty(session('error')))
-<div class="alert alert-danger alert-dismissible fade in" role="alert">
-    {{ session('error') }}
+@if (!empty(Session::has('error')))
+<div class="alert alert-danger" role="alert">
+    {{ Session::get('error') }}
 </div>
-    
 @endif
