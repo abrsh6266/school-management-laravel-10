@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Auth;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,15 @@ class ParentMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 4) {
+                return $next($request);
+            }
+            Auth::logout();
+            return redirect(url('/'));
+
+        }
+        Auth::logout();
+        return redirect(url('/'));
     }
 }
