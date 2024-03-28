@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Auth;
 use Hash;
 use Illuminate\Http\Request;
@@ -45,5 +46,17 @@ class AuthController extends Controller
     {
         Auth::logout();
         return redirect(url('/'));
+    }
+    public function forgotPassword()
+    {
+        return view('auth.forgot');
+    }
+    public function postForgotPassword(Request $request)
+    {
+        $user = User::getEmailSingle($request->email);
+        if(!empty($user)){
+
+        }
+        return redirect()->back()->with('error',"Email not found in the system!");
     }
 }
