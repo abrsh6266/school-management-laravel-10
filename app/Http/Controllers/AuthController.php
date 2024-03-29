@@ -6,6 +6,9 @@ use App\Models\User;
 use Auth;
 use Hash;
 use Illuminate\Http\Request;
+use App\Mail\ForgotPasswordMail;
+use Mail;
+use Str;
 
 class AuthController extends Controller
 {
@@ -55,7 +58,10 @@ class AuthController extends Controller
     {
         $user = User::getEmailSingle($request->email);
         if(!empty($user)){
-
+            $user->remember_token = Str::random(); 
+            $user->save();
+            Mail::to($user->email)->send(new ForgotPasswordMail($user));
+            return redirect()->back()->with('success',"Please check your email and reset your password!");
         }
         return redirect()->back()->with('error',"Email not found in the system!");
     }
