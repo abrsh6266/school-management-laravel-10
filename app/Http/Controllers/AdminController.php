@@ -22,6 +22,9 @@ class AdminController extends Controller
     }
     public function addAdmin(Request $request)
     {
+        $request->validate([
+            'email' => "required|email|unique:users"
+        ]);
         $admin = new User;
         $admin->name = trim($request->name);
         $admin->email = trim($request->email);
@@ -32,12 +35,16 @@ class AdminController extends Controller
     }
     public function edit($id)
     {
+
         $data['admin'] = User::getIdSingle($id);
         $data['header_title'] = 'Edit admin';
         return view('admin.admin.edit', $data);
     }
     public function editAdmin(Request $request, $id)
     {
+        $request->validate([
+            'email' => "required|email|unique:users,email," . $id
+        ]);
         $admin = User::getIdSingle($id);
         $admin->name = trim($request->name);
         $admin->email = trim($request->email);

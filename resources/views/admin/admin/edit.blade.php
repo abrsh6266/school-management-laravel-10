@@ -23,18 +23,20 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input value={{$admin->name}} required type="text" class="form-control"name="name"
+                                    <input value="{{ old('name',$admin->name)}}" required type="text" class="form-control"name="name"
                                         placeholder="Name">
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input value={{$admin->email}} type="email" required name="email" class="form-control" placeholder="Email">
+                                    <input value="{{ old('email',$admin->email)}}" type="email" required name="email"
+                                        class="form-control" placeholder="Email">
+                                    <p style="color: red">{{ $errors->first('email') }}</p>
+
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" name="password" class="form-control"
-                                        placeholder="Password">
-                                        <p>Do you want to change password, please add new password.</p>
+                                    <input type="password" name="password" class="form-control" placeholder="Password">
+                                    <p>Do you want to change password, please add new password.</p>
                                 </div>
                             </div>
 
