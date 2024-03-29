@@ -18,7 +18,7 @@ class ForgotPasswordMail extends Mailable
      */
     public function __construct($user)
     {
-        $this->$user = $user;
+        $this->user = $user;
     }
 
     /**
@@ -37,9 +37,9 @@ class ForgotPasswordMail extends Mailable
     public function content(): Content
     {   
         return new Content(
-            markdown: 'mail.orders.shipped',
+            markdown: 'emails.forgot',
             with: [
-                'url' => $this->orderUrl,
+                'user' => $this->user,
             ],
         );
     }

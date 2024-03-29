@@ -57,12 +57,32 @@ class AuthController extends Controller
     public function postForgotPassword(Request $request)
     {
         $user = User::getEmailSingle($request->email);
-        if(!empty($user)){
-            $user->remember_token = Str::random(); 
+        if (!empty($user)) {
+            $user->remember_token = Str::random(30);
             $user->save();
             Mail::to($user->email)->send(new ForgotPasswordMail($user));
-            return redirect()->back()->with('success',"Please check your email and reset your password!");
+            return redirect()->back()->with('success', "Please check your email and reset your password!");
         }
-        return redirect()->back()->with('error',"Email not found in the system!");
+        return redirect()->back()->with('error', "Email not found in the system!");
+    }
+    public function reset($remember_token)
+    {
+        $user = User::getTokenSingle($remember_token);
+        if(!empty($user)){
+            $data['user'] = $user;
+            return view('auth.reset',$data);
+        }
+        abort(404);
+        dd($user);
+    }
+    public function postReset($remember_token,Request $request){
+        if($request->password == $request->cpassword){
+            $user = User::getTokenSingle($remember_token);
+            $user->password = Hash::make($request->password);
+            $user->remember_token = Str::random(30);
+            $user->save();
+            return redirect(url(''))->with('success','Password successfully reset');
+        }
+        return redirect()->back()->with('error', "Password and confirm password does not match!");
     }
 }
