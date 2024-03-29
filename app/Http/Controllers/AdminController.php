@@ -46,4 +46,10 @@ class AdminController extends Controller
         $admin->save();
         return redirect('admin/admin/list')->with('success', 'Admin successfully Updated.');
     }
+    public function delete($id)
+    {
+        $admin = User::getIdSingle($id);
+        $admin->delete();
+        return redirect('admin/admin/list')->with('success', 'Admin successfully deleted.');
+    }
 }
