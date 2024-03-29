@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Add new Admin</h1>
+                        <h1>Edit Admin</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -23,28 +23,31 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input required type="text" class="form-control"name="name"
+                                    <input value={{$admin->name}} required type="text" class="form-control"name="name"
                                         placeholder="Name">
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="email" required name="email" class="form-control" placeholder="Email">
+                                    <input value={{$admin->email}} type="email" required name="email" class="form-control" placeholder="Email">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" required name="password" class="form-control"
+                                    <input type="password" name="password" class="form-control"
                                         placeholder="Password">
+                                        <p>Do you want to change password, please add new password.</p>
                                 </div>
                             </div>
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-    </div>
+            <!-- /.row -->
+    </div><!-- /.container-fluid -->
     </section>
+    <!-- /.content -->
     </div>
 @endsection

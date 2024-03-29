@@ -50,9 +50,9 @@
                                     <tbody>
                                         @foreach ($admin as $a)
                                             <tr>
-                                              <td>
-                                                {{ $a->id }}
-                                              </td>
+                                                <td>
+                                                    {{ $a->id }}
+                                                </td>
                                                 <td>
                                                     {{ $a->name }}
                                                 </td>
@@ -61,6 +61,10 @@
                                                 </td>
                                                 <td>
                                                     {{ $a->created_at }}
+                                                </td>
+                                                <td>
+                                                    <a href={{url('admin/admin/edit/'.$a->id)}} class="btn btn-primary">Edit</a>
+                                                    <a href="" class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
