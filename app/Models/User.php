@@ -42,10 +42,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    static public function getEmailSingle($email){
-        return self::where('email','=',$email)->first();    
+    static public function getAdmin()
+    {
+        return self::select('users.*')->where('user_type', '=', 1)->orderBy('id', 'desc')->get();
     }
-    static public function getTokenSingle($remember_token){
-        return self::where('remember_token','=',$remember_token)->first();    
+    static public function getEmailSingle($email)
+    {
+        return self::where('email', '=', $email)->first();
+    }
+    static public function getTokenSingle($remember_token)
+    {
+        return self::where('remember_token', '=', $remember_token)->first();
     }
 }

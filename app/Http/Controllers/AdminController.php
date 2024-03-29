@@ -10,6 +10,8 @@ class AdminController extends Controller
 {
     public function list()
     {
+        
+        $data['admin'] = User::getAdmin();
         $data['header_title'] = 'Admin list';
         return view('admin.admin.list', $data);
     }
