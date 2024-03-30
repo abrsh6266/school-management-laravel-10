@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClassController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/admin/edit/{id}', [AdminController::class,'edit']);
     Route::post('/admin/admin/edit/{id}', [AdminController::class,'editAdmin']);
     Route::get('/admin/admin/delete/{id}', [AdminController::class,'delete']);
+
+    //class
+    Route::get('/admin/class/list', [ClassController::class,'list']);
+
 
 });
 
