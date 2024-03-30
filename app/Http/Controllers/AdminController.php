@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
-
 class AdminController extends Controller
 {
     public function list()

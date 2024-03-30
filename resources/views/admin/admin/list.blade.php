@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Admin List</h1>
+                        <h1>Admin List (Total: {{ $admin->total() }})</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right">
                         <a href={{ url('admin/admin/add') }} class="btn btn-primary">Add New Admin</a>
@@ -15,7 +15,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">admin</a></li>
-                            <li class="breadcrumb-item active">list</li>
+                            <li class="breadcrumb-item active">list </li>
                         </ol>
                     </div>
                 </div>
@@ -63,13 +63,19 @@
                                                     {{ $a->created_at }}
                                                 </td>
                                                 <td>
-                                                    <a href={{url('admin/admin/edit/'.$a->id)}} class="btn btn-primary">Edit</a>
-                                                    <a href={{url('admin/admin/delete/'.$a->id)}} class="btn btn-danger">Delete</a>
+                                                    <a href={{ url('admin/admin/edit/' . $a->id) }}
+                                                        class="btn btn-primary">Edit</a>
+                                                    <a href={{ url('admin/admin/delete/' . $a->id) }}
+                                                        class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div style="padding: 10px; float:right;">
+                                    {!! $admin->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
+
+                                </div>
                             </div>
                             <!-- /.card-body -->
                         </div>
