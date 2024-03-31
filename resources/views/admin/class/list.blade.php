@@ -42,8 +42,8 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label>Date</label>
-                                <input value="{{ Request::get('date') }}" type="date" name="date"
-                                    class="form-control" placeholder="Date">
+                                <input value="{{ Request::get('date') }}" type="date" name="date" class="form-control"
+                                    placeholder="Date">
                             </div>
                             <div class="form-group col-md-3">
                                 <button class="btn btn-primary" type="submit" style="margin-top: 30px;">Search</button>
@@ -80,11 +80,37 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                     
+                                    @foreach ($classes as $class)
+                                        <tr>
+                                            <td>
+                                                {{ $class->id }}
+                                            </td>
+                                            <td>
+                                                {{ $class->name }}
+                                            </td>
+                                            <td>
+                                                {{ $class->status == 1 ? 'Active' : 'Inactive' }}
+                                            </td>
+                                            
+                                            <td>
+                                                {{ $class->created_by_name }}
+                                            </td>
+                                            <td>
+                                                {{ date('d-m-Y H:i A', strtotime($class->created_at)) }}
+                                            </td>
+                                            <td>
+                                                <a href={{ url('admin/class/edit/' . $class->id) }}
+                                                    class="btn btn-primary">Edit</a>
+                                                <a href={{ url('admin/class/delete/' . $class->id) }}
+                                                    class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <div style="padding: 10px; float:right;">
-                                
+                                {!! $classes->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
+
                             </div>
                         </div>
                         <!-- /.card-body -->

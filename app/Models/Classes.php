@@ -10,10 +10,10 @@ class Classes extends Model
 {
     use HasFactory;
     protected $table = 'classes';
-    static public function getAdmin()
+    static public function getClass()
     {
-        $return = self::select('users.*')
-            ->where('user_type', '=', 1);
+        $return = self::select('classes.*','users.name as created_by_name')
+        ->join('users','users.id','classes.created_by');
         if (!empty(Request::get('name'))) {
             $return = $return->where('name', 'like', '%' . Request::get('name') . '%');
         }

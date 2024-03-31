@@ -11,6 +11,7 @@ class ClassController extends Controller
     public function list()
     {
         $data['header_title'] = 'Class list';
+        $data['classes'] = Classes::getClass();
         return view('admin.class.list', $data);
     }
     public function add()
