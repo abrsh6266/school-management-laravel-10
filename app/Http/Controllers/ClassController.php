@@ -53,4 +53,10 @@ class ClassController extends Controller
         $class->save();
         return redirect('admin/class/list')->with('success', 'Class successfully Updated.');
     }
+    public function delete($id)
+    {
+        $admin = Classes::getIdSingle($id);
+        $admin->delete();
+        return redirect()->back()->with('success', 'Class successfully deleted.');
+    }
 }
