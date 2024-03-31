@@ -29,9 +29,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <select value="{{ $class->status }}" class="form-control"name="status">
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactive</option>
+                                    <select class="form-control"name="status">
+                                        <option {{ $class->status == 1 ? 'selected' : '' }} value="1">Active</option>
+                                        <option {{ $class->status == 0 ? 'selected' : '' }} value="0">Inactive</option>
                                     </select>
                                 </div>
                             </div>

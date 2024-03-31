@@ -6,6 +6,7 @@ use App\Models\Classes;
 use Hash;
 use Illuminate\Http\Request;
 use Auth;
+
 class ClassController extends Controller
 {
     public function list()
@@ -24,7 +25,7 @@ class ClassController extends Controller
         $request->validate([
             'name' => "required"
         ]);
-        $class = new Classes;   
+        $class = new Classes;
         $class->name = trim($request->name);
         $class->status = $request->status;
         $class->created_by = Auth::user()->id;
@@ -44,6 +45,9 @@ class ClassController extends Controller
             'name' => "required"
         ]);
         $class = Classes::getIdSingle($id);
+        if (empty($class)) {
+            abort(404);
+        }
         $class->name = trim($request->name);
         $class->status = $request->status;
         $class->save();
