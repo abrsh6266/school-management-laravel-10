@@ -31,4 +31,22 @@ class ClassController extends Controller
         $class->save();
         return redirect('admin/class/list')->with('success', 'class successfully created.');
     }
+    public function edit($id)
+    {
+
+        $data['class'] = Classes::getIdSingle($id);
+        $data['header_title'] = 'Edit Class';
+        return view('admin.class.edit', $data);
+    }
+    public function editClass(Request $request, $id)
+    {
+        $request->validate([
+            'name' => "required"
+        ]);
+        $class = Classes::getIdSingle($id);
+        $class->name = trim($request->name);
+        $class->status = $request->status;
+        $class->save();
+        return redirect('admin/class/list')->with('success', 'Class successfully Updated.');
+    }
 }

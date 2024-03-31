@@ -27,4 +27,8 @@ class Classes extends Model
             ->paginate(10);
         return $return;
     }
+    static public function getIdSingle($id)
+    {
+        return self::where('id', '=', $id)->first();
+    }
 }
