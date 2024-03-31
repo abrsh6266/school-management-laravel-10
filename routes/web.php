@@ -37,6 +37,8 @@ Route::group(['middleware' => 'admin'], function () {
 
     //class
     Route::get('/admin/class/list', [ClassController::class,'list']);
+    Route::get('/admin/class/add', [ClassController::class,'add']);
+    Route::post('/admin/class/add', [ClassController::class,'addClass']);
 
 
 });
