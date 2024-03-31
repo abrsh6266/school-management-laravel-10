@@ -15,13 +15,13 @@ class Classes extends Model
         $return = self::select('classes.*','users.name as created_by_name')
         ->join('users','users.id','classes.created_by');
         if (!empty(Request::get('name'))) {
-            $return = $return->where('name', 'like', '%' . Request::get('name') . '%');
+            $return = $return->where('classes.name', 'like', '%' . Request::get('name') . '%');
         }
         if (!empty(Request::get('status'))) {
             $return = $return->where('email', 'status', Request::get('status'));
         }
         if (!empty(Request::get('date'))) {
-            $return = $return->whereDate('created_at', 'like', '%' . Request::get('date') . '%');
+            $return = $return->whereDate('classes.created_at', 'like', '%' . Request::get('date') . '%');
         }
         $return = $return->orderBy('id', 'desc')
             ->paginate(10);
