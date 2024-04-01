@@ -12,8 +12,8 @@ class Classes extends Model
     protected $table = 'classes';
     static public function getClass()
     {
-        $return = self::select('classes.*','users.name as created_by_name')
-        ->join('users','users.id','classes.created_by');
+        $return = self::select('classes.*', 'users.name as created_by_name')
+            ->join('users', 'users.id', 'classes.created_by');
         if (!empty(Request::get('name'))) {
             $return = $return->where('classes.name', 'like', '%' . Request::get('name') . '%');
         }
@@ -27,5 +27,14 @@ class Classes extends Model
     static public function getIdSingle($id)
     {
         return self::where('id', '=', $id)->first();
+    }
+    static public function getClasses()
+    {
+        $return = self::select('classes.*')
+            ->join('users', 'users.id', 'classes.created_by')
+            ->where('classes.status', '=', 1)
+            ->orderBy('classes.name', 'asc')
+            ->get();
+        return $return;
     }
 }
