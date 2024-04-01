@@ -22,7 +22,7 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label>Class Name</label>
+                                    <label>select Class</label>
                                     <select class="form-control"name="class_id" required>
                                         <option value="">Select class</option>
                                         @foreach ($classes as $class)
@@ -31,13 +31,14 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Class Name</label>
-                                    <select class="form-control"name="class_id" required>
-                                        <option value="">Select Subject</option>
-                                        @foreach ($subjects as $subject)
-                                            <option value="{{ $subject->id }}">{{ $subject->name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <label>Select Subjects</label>
+                                    @foreach ($subjects as $subject)
+                                        <div>
+                                            <label style="font-weight: normal;">
+                                                <input type="checkbox" value="{{$subject->id}}" name="subject_id[]">{{ $subject->name }}
+                                            </label>
+                                        </div>
+                                    @endforeach
                                 </div>
                                 <div class="form-group">
                                     <label>Status</label>
