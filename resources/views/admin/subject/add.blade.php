@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit Class</h1>
+                        <h1>Add new Subject</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -23,29 +23,36 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input value="{{ old('name', $class->name) }}" type="text"
-                                        class="form-control"name="name" placeholder="Name">
+                                    <input type="text" class="form-control"name="name" placeholder="Class Name">
                                     <p style="color: red">{{ $errors->first('name') }}</p>
                                 </div>
                                 <div class="form-group">
+                                    <label>Select Type</label>
+                                    <select class="form-control"name="type">
+                                        <option value="">Select Type</option>
+                                        <option value="Theory">Theory</option>
+                                        <option value="Practical">Practical</option>
+                                    </select>
+                                    <p style="color: red">{{ $errors->first('type') }}</p>
+                                </div>
+                              <div class="form-group">
                                     <label>Status</label>
                                     <select class="form-control"name="status">
-                                        <option {{ $class->status == 1 ? 'selected' : '' }} value="1">Active</option>
-                                        <option {{ $class->status == 0 ? 'selected' : '' }} value="0">Inactive</option>
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
                                     </select>
                                 </div>
+
                             </div>
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-primary">Create</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
-    </div><!-- /.container-fluid -->
+    </div>
     </section>
-    <!-- /.content -->
     </div>
 @endsection

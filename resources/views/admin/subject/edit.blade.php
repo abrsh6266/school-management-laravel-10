@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit Class</h1>
+                        <h1>Edit Subject</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -26,6 +26,15 @@
                                     <input value="{{ old('name', $class->name) }}" type="text"
                                         class="form-control"name="name" placeholder="Name">
                                     <p style="color: red">{{ $errors->first('name') }}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Select Type</label>
+                                    <select class="form-control"name="type">
+                                        <option  value="">Select Type</option>
+                                        <option {{ $class->type == "Theory" ? 'selected' : '' }} value="Theory">Theory</option>
+                                        <option {{ $class->type == "Practical" ? 'selected' : '' }} value="Practical">Practical</option>
+                                    </select>
+                                    <p style="color: red">{{ $errors->first('type') }}</p>
                                 </div>
                                 <div class="form-group">
                                     <label>Status</label>
