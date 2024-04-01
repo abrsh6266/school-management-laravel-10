@@ -23,12 +23,13 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>select Class</label>
-                                    <select class="form-control"name="class_id" required>
+                                    <select class="form-control"name="class_id">
                                         <option value="">Select class</option>
                                         @foreach ($classes as $class)
                                             <option value="{{ $class->id }}">{{ $class->name }}</option>
                                         @endforeach
                                     </select>
+                                    <p style="color: red">{{ $errors->first('class_id') }}</p>
                                 </div>
                                 <div class="form-group">
                                     <label>Select Subjects</label>
@@ -39,6 +40,8 @@
                                             </label>
                                         </div>
                                     @endforeach
+                                    <p style="color: red">{{ $errors->first('subject_id') }}</p>
+
                                 </div>
                                 <div class="form-group">
                                     <label>Status</label>
